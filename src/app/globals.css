@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary-rgb: 146, 60, 251;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +19,28 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+.post {
+  box-shadow: 6px 6px 0 0px black;
+  transition: 0.2s;
+}
+
+.post:hover {
+  transition: 0.2s;
+  box-shadow: 6px 6px 0 0px rgb(var(--primary-rgb));
+  border-color: rgb(var(--primary-rgb));
+
+  div,
+  img {
+    transition: 0.2s;
+    border-color: rgb(var(--primary-rgb));
+  }
+}
+
+.post-footer:has(a:hover) {
+  color: rgb(var(--primary-rgb));
 }
