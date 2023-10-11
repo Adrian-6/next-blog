@@ -7,16 +7,6 @@ import { Suspense } from "react";
 
 export const revalidate = 0
 
-/* export async function generateStaticParams() {
-    const posts = await getPostsMeta()
-
-    if (!posts) return []
-
-    return posts.map(post => ({
-        postId: post.id
-    }))
-} */
-
 export async function generateMetadata({ params: { postId } }) {
     const post = await getPostByName(`${postId}.mdx`)
 
@@ -36,6 +26,7 @@ export default async function Post({ params: { postId } }) {
     if (!post) notFound()
 
     const { meta, content } = post
+
     const tags = meta.tags.map((tag, i) => (
         <Link key={i} href={`/tags/${tag}`} className="bg-black px-3 py-0.5 hover:text-primary-color">{tag}</Link>
     ))
@@ -67,15 +58,11 @@ export default async function Post({ params: { postId } }) {
                             </div>
                             <div className='border-t border-black h-14 flex-shrink-0'>
                                 <div className='flex justify-end h-full'>
-                                    {/*                                     <div className='w-full border-black flex'>
-                    
-                                    </div> */}
                                     <div className="border-x border-black flex mr-4">
                                         <p className="my-auto px-4">
                                             Kyriakos Grizzly 2023
                                         </p>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

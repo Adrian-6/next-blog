@@ -1,10 +1,10 @@
-import { getPostByName } from "../../../lib/posts"
-import { Suspense } from "react"
+import { notFound } from 'next/navigation'
 import Post from './Post'
 
 export default async function PostsList({ promise }) {
-
+    
     const posts = await promise()
+    if (posts.length === 0) notFound()
     const content = (
         <main className="min-h-screen">
             <div className="container mx-auto pt-10 ">

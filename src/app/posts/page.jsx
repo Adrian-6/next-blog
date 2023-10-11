@@ -21,7 +21,6 @@ export default async function page() {
             <Suspense fallback={<h2>Loading...</h2>}>
                 <PostsList promise={xd} />
             </Suspense>
-
         </>
     )
 }
