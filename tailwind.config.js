@@ -6,10 +6,16 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       spacing: {
         '128': '32rem',
         '100.8': '25.2rem'
+      },
+      colors: {
+        "primary-color": "rgb(var(--primary-rgb))",
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -24,7 +24,8 @@ body {
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
-.post {
+.post,
+.post__full {
   box-shadow: 6px 6px 0 0px black;
   transition: 0.2s;
 }
@@ -39,8 +40,20 @@ body {
     transition: 0.2s;
     border-color: rgb(var(--primary-rgb));
   }
+
+  .post__date {
+    background-color: rgb(var(--primary-rgb));
+  }
+}
+
+.post a:hover {
+  color: rgb(var(--primary-rgb));
 }
 
 .post-footer:has(a:hover) {
   color: rgb(var(--primary-rgb));
+
+  svg {
+    fill: rgb(var(--primary-rgb));
+  }
 }
