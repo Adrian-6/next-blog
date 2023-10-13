@@ -25,12 +25,19 @@ body {
 }
 
 .post,
-.post__full {
+.post__full,
+.popup,
+.chuj:hover {
   box-shadow: 6px 6px 0 0px black;
   transition: 0.2s;
 }
 
-.post:hover {
+.chuj {
+  transition: 0.2s;
+}
+
+.post:hover,
+.chuj:hover {
   transition: 0.2s;
   box-shadow: 6px 6px 0 0px rgb(var(--primary-rgb));
   border-color: rgb(var(--primary-rgb));

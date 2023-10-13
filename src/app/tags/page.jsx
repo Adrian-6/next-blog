@@ -1,27 +1,18 @@
-import React from 'react'
-import { getPostsMeta, getPostByName } from '../../../lib/posts'
-import { notFound } from 'next/navigation'
-import { Suspense } from "react"
-import PostsList from '../posts/PostsList'
+import React, { Suspense } from 'react'
+import Link from 'next/link'
+import { tagsArr } from '../../../lib/tagsArr'
+
 export default async function page() {
 
-  const posts = await getPostsMeta()
-
-  const postTagsArr = []
-  for (const post of posts) {
-    const res = await getPostByName(`${post.meta.id}.mdx`)
-    //let stringContent = postContent.content.toString();
-    postTagsArr.push(res.meta.tags.filter(tag => postTagsArr.indexOf(tag) === -1))
-  }
-
-  const tagsArr = Array.from(new Set(postTagsArr.flat()))
+  const tagsList = tagsArr.map((tag, id) => (<Link href={`/tags/${tag}`} key={id} className='px-4 py-2 bg-black text-white hover:text-primary-color'>{tag}</Link>))
 
   return (
     <>
       <Suspense fallback={<h2>Loading...</h2>}>
-        <p>{JSON.stringify(tagsArr)}</p>
+        <div className='flex flex-wrap gap-6'>
+          {tagsList}
+        </div>
       </Suspense>
-
     </>
   )
 }

@@ -4,6 +4,7 @@ import Posts from "../../components/Posts";
 import React from 'react'
 import Link from "next/link";
 import { Suspense } from "react";
+import Image from "next/image";
 
 export const revalidate = 0
 
@@ -33,10 +34,9 @@ export default async function Post({ params: { postId } }) {
 
     return (
         <Suspense fallback={<p>Loading</p>}>
-            <main className="min-h-screen max-w-screen flex">
-                <div className='post__full border-solid border border-black max-w-screen-lg mx-auto my-12 bg-white'>
+                <div className='post__full border border-black max-w-screen-xl my-12 bg-white'>
                     <div className='flex flex-col h-full relative'>
-                        <img src='/kyriakos.jpg' alt="kyriakos grizzly" className='border-b border-black aspect-photo' />
+                        <Image height="630" width="1280" src='/kyriakos.jpg' alt="kyriakos grizzly" className='border-b border-black aspect-photo' />
                         <div className='flex flex-col flex-grow justify-between'>
                             <span className='text-white px-4 my-3.5 flex justify-between'>
                                 <span className="flex gap-2">
@@ -68,7 +68,6 @@ export default async function Post({ params: { postId } }) {
                         </div>
                     </div>
                 </div>
-            </main>
         </Suspense>
     )
 }

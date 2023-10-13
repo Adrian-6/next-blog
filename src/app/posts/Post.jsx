@@ -2,10 +2,12 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Suspense } from 'react';
-export default function Post(props) {
+import { base_url } from '../../../lib/base_url'
+import Image from 'next/image';
 
-    const links = `http://localhost:3000/posts/${props.postId}`;
+export default function Post({ date, title, tags, postId, intro }) {
 
+    const links = `${base_url}/post/${postId}`;
 
     let [popupVisible, setPopupVisible] = useState(false)
     let popupText = 'Copied to clipboard'
@@ -26,18 +28,19 @@ export default function Post(props) {
 
     return (
         <Suspense fallback={<p>Loading</p>}>
-            <div className='post border-solid border border-black w-80 h-100.8 cursor-default'>
-                <div className={`${popupClass} bg-pink-500 text-white left-1/2 -translate-x-1/2 bottom-16 z-10`}>{popupText}</div>
+        <>
+        <div className={`${popupClass} text-lg bg-primary-color text-white left-1/2 -translate-x-1/2 bottom-16 z-10 p-4 popup border border-black select-none`}>{popupText}</div>
+        <div className='post border border-black w-80 h-100.8 cursor-default'>
                 <div className='flex flex-col h-full relative'>
                     <div className='bg-black text-white absolute -top-1.5 -left-1.5 px-2 post__date'>
-                        {props.date}
+                        {date}
                     </div>
-                    <Link href={`/posts/${props.postId}`}>
-                        <img src='/kyriakos.jpg' alt="kyriakos grizzly" className='border-b border-black aspect-photo' />
+                    <Link href={`/post/${postId}`}>
+                        <Image height="197" width="318" src='/kyriakos.jpg' alt="kyriakos grizzly" className='border-b border-black aspect-photo' />
                     </Link>
                     <div className='flex flex-col flex-grow justify-between max-h-52 overflow-hidden'>
                         <span className='text-white flex flex-wrap gap-2 px-3 mt-4'>
-                            {props.tags.map((tag, id) => (
+                            {tags.map((tag, id) => (
                                 <span className="bg-black px-3 py-0.5" key={id}>
                                     <Link href={`/tags/${tag}`}>
                                         {tag}
@@ -45,15 +48,15 @@ export default function Post(props) {
                                 </span>
                             ))}
                         </span>
-                            <h2 className='px-3 font-bold mt-2 text-xl'>
-                                <Link href={`/posts/${props.postId}`}>
-                                    {props.title}
-                                </Link>
-                            </h2>
+                        <h2 className='px-3 font-bold mt-2 text-xl'>
+                            <Link href={`/post/${postId}`}>
+                                {title}
+                            </Link>
+                        </h2>
                         <div className='max-h-24 break-words overflow-hidden line-clamp-2 px-3 mb-3'>
-                            <Link href={`/posts/${props.postId}`}>
+                            <Link href={`/post/${postId}`}>
                                 <p className='max-w-full text-gray-700'>
-                                    {props.intro}
+                                    {intro}
                                 </p>
                             </Link>
                         </div>
@@ -61,12 +64,12 @@ export default function Post(props) {
                             <div className='flex justify-between h-full'>
                                 <span className='flex justify-between flex-grow my-auto px-3 post-footer'>
                                     <h2 className='font-bold'>
-                                        <Link href={`/posts/${props.postId}`}>
+                                        <Link href={`/post/${postId}`}>
                                             View more
                                         </Link>
                                     </h2>
                                     <span>
-                                        <Link href={`/posts/${props.postId}`}>
+                                        <Link href={`/post/${postId}`}>
                                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z" /></svg>
                                         </Link>
                                     </span>
@@ -81,6 +84,7 @@ export default function Post(props) {
                     </div>
                 </div>
             </div>
+        </>
         </Suspense>
     )
 }

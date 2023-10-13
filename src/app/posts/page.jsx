@@ -1,26 +1,9 @@
-import React from 'react'
-import { getPostsMeta, getPostByName } from '../../../lib/posts'
-import { notFound } from 'next/navigation'
-import { Suspense } from "react"
-import PostsList from './PostsList'
+import FrontPage from './FrontPage'
+import { postsPerPage } from '../../../lib/postsPerPage'
+
 export default async function page() {
-
-    const posts = await getPostsMeta()
-
-    let xd = async () => {
-        const postsArr = []
-        for (const post of posts) {
-            const res = await getPostByName(`${post.meta.id}.mdx`)
-            //let stringContent = postContent.content.toString();
-            postsArr.push(res)
-        }
-        return postsArr
-    }
+    const currentPage = 1
     return (
-        <>
-            <Suspense fallback={<h2>Loading...</h2>}>
-                <PostsList promise={xd} />
-            </Suspense>
-        </>
+        <FrontPage currentPage={currentPage} postsPerPage={postsPerPage} />
     )
 }
