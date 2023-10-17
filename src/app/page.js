@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import FrontPage from '../app/posts/FrontPage'
 import { Suspense } from "react"
+import TagsSlider from './components/TagsSlider'
 
 export default function Home() {
   return (
@@ -11,15 +12,17 @@ export default function Home() {
         I'm <span className='font-bold'>retarded</span>
       </span>
       <div>
-      <div>
-        <h2 >
-          Newest posts
-        </h2>
+        <div>
+          <h2 >
+            Newest posts
+          </h2>
+        </div>
+        <FrontPage currentPage={1} postsPerPage={3} noPagination={true} />
       </div>
-      <FrontPage currentPage={1} postsPerPage={3} noPagination={true}/>
-      </div>
-      <div>
-        slider z tagami
+      <div className='slider__background z-10 '>
+        <ul className='max-w-screen-2lg '>
+          <TagsSlider />
+        </ul>
       </div>
     </div>
   )

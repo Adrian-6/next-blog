@@ -27,17 +27,17 @@ body {
 .post,
 .post__full,
 .popup,
-.chuj:hover {
+.header__item:hover {
   box-shadow: 6px 6px 0 0px black;
   transition: 0.2s;
 }
 
-.chuj {
+.header__item {
   transition: 0.2s;
 }
 
 .post:hover,
-.chuj:hover {
+.header__item:hover {
   transition: 0.2s;
   box-shadow: 6px 6px 0 0px rgb(var(--primary-rgb));
   border-color: rgb(var(--primary-rgb));
@@ -63,4 +63,56 @@ body {
   svg {
     fill: rgb(var(--primary-rgb));
   }
+}
+
+.item,
+.item__selected {
+  border: 1px solid;
+  height: 1.8em;
+  width: 1.8em;
+  text-align: center;
+}
+
+.item:hover,
+.tag__item:hover,
+.item__selected {
+  transition: 0.2s;
+  box-shadow: 3px 3px 0 0px rgb(var(--primary-rgb));
+  border-color: rgb(var(--primary-rgb));
+}
+
+.tag__item:hover {
+  transition: 0.2s;
+  box-shadow: 6px 6px 0 0px rgb(var(--primary-rgb));
+  border-color: rgb(var(--primary-rgb));
+
+  :nth-child(2) {
+    color: rgb(var(--primary-rgb));
+  }
+}
+
+.slider__background {
+  background: white;
+  position: relative;
+  width: 100%;
+}
+
+.slider__background::before {
+  content: "";
+  position: absolute;
+  background: white;
+  top: 0;
+  left: -5000px;
+  height: 100%;
+  width: 5000px;
+}
+
+.slider__background::after {
+  content: "";
+  position: absolute;
+  background: white;
+  top: 0;
+  right: -5000px;
+  height: 100%;
+  width: 5000px;
 }

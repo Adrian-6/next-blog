@@ -12,7 +12,7 @@ module.exports = {
     extend: {
       spacing: {
         '128': '32rem',
-        '100.8': '25.2rem'
+        '100.8': '25.2rem',
       },
       colors: {
         "primary-color": "rgb(var(--primary-rgb))",
@@ -22,6 +22,14 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+    },
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      '2lg': '1100px',
+      'xl': '1280px',
+      '2xl': '1536px',
     },
   },
   plugins: [],

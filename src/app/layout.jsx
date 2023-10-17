@@ -15,8 +15,8 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <main className='bg-orange-400 text-black prose prose-xl prose-slate dark:prose-invert mx-auto min-h-screen'>
           <Header />
-          <div className='flex'>
-            <div className='max-w-screen-xl mx-auto'>
+          <div className='flex overflow-hidden'>
+            <div className='max-w-screen-2lg mx-auto mt-28'>
               {children}
             </div>
           </div>

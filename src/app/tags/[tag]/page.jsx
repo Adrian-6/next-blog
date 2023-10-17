@@ -19,7 +19,7 @@ export default async function page({ params: { tag } }) {
     return postsArr
   }
 
-  const tagsList = tagsArr.map((tag, id) => (<Link href={`/tags/${tag}`} key={id} className='px-4 py-2 bg-black text-white hover:text-primary-color'>{tag}</Link>))
+  const tagsList = tagsArr.sort().map((tag, id) => (<Link href={`/tags/${tag}`} key={id} className='px-4 py-2 bg-black text-white hover:text-primary-color tag__item'>{tag}</Link>))
 
   return (
     <>
