@@ -29,14 +29,14 @@ export default function Post({ date, title, tags, postId, intro, image }) {
     return (
         <Suspense fallback={<p>Loading</p>}>
             <>
-                <div className={`${popupClass} text-lg bg-primary-color text-white left-1/2 -translate-x-1/2 bottom-16 z-10 p-4 popup border border-black select-none`}>{popupText}</div>
-                <div className='post border border-black w-80 h-100.8 cursor-default'>
+                <div className={`${popupClass} text-lg bg-primary-color text-white left-1/2 -translate-x-1/2 bottom-16 z-20 p-4 popup border border-black select-none flex-shrink-0`}>{popupText}</div>
+                <div className='post border border-black w-80 h-100.8 cursor-default mx-2 my-4 flex-shrink-0'>
                     <div className='flex flex-col h-full relative'>
                         <div className='bg-black text-white absolute -top-1.5 -left-1.5 px-2 post__date'>
                             {date}
                         </div>
                         <Link href={`/post/${postId}`}>
-                            <Image height="197" width="318" src={image} alt="image" className='border-b border-black aspect-photo' />
+                            <Image height="197" width="318" src={image} alt="background image" className='border-b border-black' />
                         </Link>
                         <div className='flex flex-col flex-grow justify-between max-h-52 overflow-hidden'>
                             <span className='text-white flex flex-wrap gap-2 px-3 mt-4'>

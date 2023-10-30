@@ -1,7 +1,7 @@
 import { getPostByName, getPostsMeta } from '../../../lib/posts'
 import Link from 'next/link'
 
-export default async function TagsSlider() {
+export default async function TagsSlider({ tagsNum }) {
     const posts = await getPostsMeta()
 
     const postTagsArr = []
@@ -30,9 +30,9 @@ export default async function TagsSlider() {
         }
     }
 
-    const topTags = (tagsCount) => (countTagsArr.sort(sortArr).slice(0, tagsCount))
+    const topTags = (tagsNum) => (countTagsArr.sort(sortArr).slice(0, tagsNum))
 
-    const content = topTags(5).map((tag, id) => {
+    const content = topTags(tagsNum).map((tag, id) => {
         return (
             <li className='border border-black tag__item flex-1 text-center' key={id} >
                 <Link href={`/tags/${tag[0]}`} >
@@ -49,6 +49,6 @@ export default async function TagsSlider() {
     )
 
     return (
-        <ul className='flex gap-4 flex-wrap w-full py-6'>{content}</ul>
+        <ul className='flex gap-4 flex-wrap w-full py-6 flex-col px-2 sm:flex-row sm:px-0'>{content}</ul>
     )
 }

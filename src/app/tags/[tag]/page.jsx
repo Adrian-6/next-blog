@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 export default async function page({ params: { tag } }) {
   const posts = await getPostsMeta()
-  let xd = async () => {
+  let getPosts = async () => {
     const postsArr = []
     for (const post of posts) {
       const res = await getPostByName(`${post.meta.id}.mdx`)
@@ -28,7 +28,7 @@ export default async function page({ params: { tag } }) {
           {tagsList}
         </div>
         <h1 className='text-xl'>posts about: {tag}</h1>
-        <PostsList promise={xd} />
+        <PostsList promise={getPosts} />
       </Suspense>
     </>
   )

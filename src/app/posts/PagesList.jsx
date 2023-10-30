@@ -32,11 +32,10 @@ export default function PagesList({ page, pages }) {
                 &hellip;
             </span>
         </>
-        : (pagesNum.at(0) === 2) ?
-            <Link href={`/posts/1`} key="1" className="item">
-                1
-            </Link>
-            : null
+        : (pagesNum.at(0) === 2) &&
+        <Link href={`/posts/1`} key="1" className="item">
+            1
+        </Link>
     const lastPage = (pagesNum.at(-1) < pages - 1) ?
         <>
             <span className='select-none'>
@@ -46,11 +45,10 @@ export default function PagesList({ page, pages }) {
                 {pages}
             </Link>
         </>
-        : (pagesNum.at(-1) === pages - 1) ?
-            <Link href={`/posts/${pages}`} key={pages} className="item">
-                {pages}
-            </Link>
-            : null
+        : (pagesNum.at(-1) === pages - 1) &&
+        <Link href={`/posts/${pages}`} key={pages} className="item">
+            {pages}
+        </Link>
 
     let pageLinks = pagesNum.map(num => {
         if (page == num) {

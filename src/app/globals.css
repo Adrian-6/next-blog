@@ -29,10 +29,10 @@ body {
 .popup,
 .header__item:hover {
   box-shadow: 6px 6px 0 0px black;
-  transition: 0.2s;
 }
 
-.header__item {
+.header__item,
+.tag__item {
   transition: 0.2s;
 }
 

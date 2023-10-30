@@ -26,7 +26,7 @@ export default async function FrontPage({ currentPage, postsPerPage, noPaginatio
     const pagination = noPagination ? null : <PagesList page={currentPage} pages={pagesNum} />
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col w-full'>
             <Suspense fallback={<h2>Loading...</h2>}>
                 <PostsList promise={postsPromise} />
                 {pagination}
