@@ -2,6 +2,7 @@
 import styles from './styles.module.css'
 import { Suspense, useEffect, useRef, useState, useCallback } from "react"
 import Post from "./Post"
+
 export default function PostsCarousel({ posts }) {
 
     if (!posts || posts.length === 0) notFound()
@@ -50,7 +51,7 @@ export default function PostsCarousel({ posts }) {
     }, [hover, carouselEnd])
 
     return (
-        <div className='max-w-screen-2lg left-0 bg-white mb-8 pb-2 border-black border-2'>
+        <div className='max-w-screen-2lg left-0 pb-2 border-b-2 border-black md:border-2 select-none'>
             <div className={`flex w-screen lg:w-full pr-2 overflow-x-scroll ${styles.scrollbar}`} ref={carouselRef}>
                 <Suspense fallback={<h2>Loading...</h2>}>
                     {posts.map((post, id) => {

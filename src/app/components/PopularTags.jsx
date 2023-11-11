@@ -1,7 +1,7 @@
 import { getPostByName, getPostsMeta } from '../../../lib/posts'
 import Link from 'next/link'
 
-export default async function TagsSlider({ tagsNum }) {
+export default async function PopularTags({ tagsNum }) {
     const posts = await getPostsMeta()
 
     const postTagsArr = []

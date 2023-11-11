@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import Link from 'next/link'
 import { tagsArr } from '../../../lib/tagsArr'
-import TagsSlider from '../components/TagsSlider'
+import PopularTags from '../components/PopularTags'
 
 export default async function page() {
 
@@ -11,7 +11,7 @@ export default async function page() {
     <>
       <Suspense fallback={<h2>Loading...</h2>}>
         <div className='flex flex-wrap gap-6'>
-          <TagsSlider />
+          <PopularTags />
         </div>
       </Suspense>
     </>

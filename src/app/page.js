@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import FrontPage from '../app/posts/FrontPage'
 import { Suspense } from "react"
-import TagsSlider from './components/TagsSlider'
+import PopularTags from './components/PopularTags'
 import PostsCarousel from './posts/PostsCarousel'
 import dynamic from 'next/dynamic'
 import { getPostsMeta, getPostByName } from '../../lib/posts'
 
-const DynamicComponentWithNoSSR = dynamic(
+const DynamicCarousel = dynamic(
   () => import('./posts/PostsCarousel'),
   { ssr: false }
 )
@@ -24,28 +24,35 @@ for (const post of posts) {
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen items-center w-full">
-      <div className='h-56 bg-white w-full'>
-        <p className='text-3xl text-center'>
-          hello🦅&nbsp;
+      <div className='bg-zinc-100 full__background py-16'>
+        <h1 className='text-3xl text-center'>
+          Blog
+        </h1>
+        <p className='whitespace-nowrap text-center mt-6 text-xl'>
+          Latest news <span className='font-bold'>for developers</span>
         </p>
-        <span className='whitespace-nowrap'>
-          I'm <span className='font-bold'>retarded</span>
-        </span>
       </div>
       <div>
-        <div className='bg-black mt-10 p-2'>
+        <div className='bg-black mt-20 p-2'>
           <h2 className='text-white text-xl text-center' >
             Newest posts
           </h2>
         </div>
         <Suspense fallback={<h2>Loading...</h2>}>
-          <DynamicComponentWithNoSSR posts={postsArr} />
+          <DynamicCarousel posts={postsArr} />
         </Suspense>
-        {/* <FrontPage currentPage={1} postsPerPage={3} noPagination={true} /> */}
+        <div className='flex mt-6'>
+          <Link href="/posts" className='text-white text-xl bg-black px-4 py-2 mx-auto hover:text-primary-color'>
+            See More Posts
+          </Link>
+        </div>
       </div>
-      <div className='slider__background z-10 '>
+      <div className='z-10 w-full mt-12 border-top-full pt-4'>
+        <h2 className='text-center text-xl'>
+          Popular Tags
+        </h2>
         <ul className='max-w-screen-2lg'>
-          <TagsSlider tagsNum={5} />
+          <PopularTags tagsNum={5} />
         </ul>
       </div>
     </div>

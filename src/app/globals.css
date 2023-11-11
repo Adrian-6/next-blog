@@ -7,6 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --primary-rgb: 146, 60, 251;
+  --neutral-200-rgb: 229 229 229;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -91,28 +92,57 @@ body {
   }
 }
 
-.slider__background {
-  background: white;
+.full__background {
+  background: rgb(var(--neutral-200-rgb));
   position: relative;
   width: 100%;
 }
 
-.slider__background::before {
+.full__background::before {
   content: "";
   position: absolute;
-  background: white;
+  background: rgb(var(--neutral-200-rgb));
   top: 0;
   left: -5000px;
   height: 100%;
   width: 5000px;
 }
 
-.slider__background::after {
+.full__background::after {
   content: "";
   position: absolute;
-  background: white;
+  background: rgb(var(--neutral-200-rgb));
   top: 0;
   right: -5000px;
   height: 100%;
   width: 5000px;
+}
+
+.border-top-full {
+  position: relative;
+  width: 100%;
+  border-top: 1px solid rgb(161 161 170);
+
+}
+
+.border-top-full::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5000px;
+  height: 100%;
+  width: 5000px;
+  border-top: 1px solid rgb(161 161 170);
+
+}
+
+.border-top-full::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5000px;
+  height: 100%;
+  width: 5000px;
+  border-top: 1px solid rgb(161 161 170);
+
 }
