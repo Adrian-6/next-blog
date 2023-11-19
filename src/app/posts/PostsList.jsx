@@ -7,7 +7,7 @@ export default async function PostsList({ promise }) {
     if (!posts || posts.length === 0) notFound()
     const content = (
         <div className="container mx-auto">
-            <div className="flex  justify-evenly flex-wrap mb-10">
+            <div className="flex  justify-evenly flex-wrap mb-8">
                 {
                     posts.map((post, id) => {
                         const { date, title, intro, image, tags, id: postId } = post.meta

@@ -24,7 +24,7 @@ export default function PostsCarousel({ posts }) {
             threshold: 1.0
         })
         if (post) intObserver.current.observe(post)
-    }, [posts, document])
+    }, [])
 
     useEffect(() => {
         carouselRef.current.onpointerenter = () => {
@@ -46,14 +46,14 @@ export default function PostsCarousel({ posts }) {
                 carouselRef.current.scrollBy({ top: 0, left, behavior: 'smooth' })
                 setCarouselEnd(false)
             }
-        }, 1000)
+        }, 3500)
         return () => clearInterval(interval);
     }, [hover, carouselEnd])
 
     return (
         <div className='max-w-screen-2lg left-0 pb-2 border-b-2 border-black md:border-2 select-none'>
             <div className={`flex w-screen lg:w-full pr-2 overflow-x-scroll ${styles.scrollbar}`} ref={carouselRef}>
-                <Suspense fallback={<h2>Loading...</h2>}>
+                <Suspense>
                     {posts.map((post, id) => {
                         const { date, title, intro, image, tags, id: postId } = post.meta
                         if (posts.length === id + 1) {

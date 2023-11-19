@@ -3,8 +3,16 @@ import { getPostsMeta, getPostByName } from '../../../../lib/posts'
 import { notFound } from 'next/navigation'
 import { Suspense } from "react"
 import PostsList from '../../posts/PostsList'
-import { tagsArr } from '../../../../lib/tagsArr'
-import Link from 'next/link'
+
+export async function generateMetadata(
+  { params },
+) {
+  const tag = params.tag
+  return {
+    title: `${tag}\xa0|\xa0Blog`,
+    description: `Blog posts about: ${tag}`
+  }
+}
 
 export default async function page({ params: { tag } }) {
   const posts = await getPostsMeta()
@@ -19,15 +27,15 @@ export default async function page({ params: { tag } }) {
     return postsArr
   }
 
-  const tagsList = tagsArr.sort().map((tag, id) => (<Link href={`/tags/${tag}`} key={id} className='px-4 py-2 bg-black text-white hover:text-primary-color tag__item'>{tag}</Link>))
 
   return (
     <>
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <div className='flex flex-wrap gap-6 justify-center'>
-          {tagsList}
+      <Suspense>
+        <div className='bg-zinc-100 full__background py-8 mb-10'>
+          <p className='whitespace-nowrap text-center text-xl'>
+            Posts about: <span className='font-bold text-primary-color'>{tag}</span>
+          </p>
         </div>
-        <h1 className='text-xl'>posts about: {tag}</h1>
         <PostsList promise={getPosts} />
       </Suspense>
     </>

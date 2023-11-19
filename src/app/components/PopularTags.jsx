@@ -34,7 +34,7 @@ export default async function PopularTags({ tagsNum }) {
 
     const content = topTags(tagsNum).map((tag, id) => {
         return (
-            <li className='border border-black tag__item flex-1 text-center' key={id} >
+            <li className='border border-black tag__item flex-1 text-center min-w-[150px] max-w-[360px]' key={id} >
                 <Link href={`/tags/${tag[0]}`} >
                     <div className='px-6 py-2 bg-black text-white'>
                         {tag[0]}
@@ -49,6 +49,6 @@ export default async function PopularTags({ tagsNum }) {
     )
 
     return (
-        <ul className='flex gap-4 flex-wrap w-full py-6 flex-col px-2 sm:flex-row sm:px-0'>{content}</ul>
+        <ul className='flex gap-4 flex-wrap py-6 px-2 sm:flex-row sm:px-0'>{content}</ul>
     )
 }

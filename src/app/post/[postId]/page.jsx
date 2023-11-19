@@ -1,12 +1,8 @@
-import { notFound } from "next/navigation";
-import { getPostsMeta, getPostByName } from "../../../../lib/posts";
-import Posts from "../../components/Posts";
-import React from 'react'
-import Link from "next/link";
-import { Suspense } from "react";
 import Image from "next/image";
-
-export const revalidate = 0
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { getPostByName } from "../../../../lib/posts";
 
 export async function generateMetadata({ params: { postId } }) {
     const post = await getPostByName(`${postId}.mdx`)
@@ -17,7 +13,7 @@ export async function generateMetadata({ params: { postId } }) {
         }
     }
     return {
-        title: post.meta.title
+        title: `${post.meta.title}\xa0|\xa0Blog` // \xa0 == &nbsp;
     }
 }
 
@@ -29,24 +25,23 @@ export default async function Post({ params: { postId } }) {
     const { meta, content } = post
     const { tags, image, author, date, title } = meta
 
-
     const tagsList = tags.map((tag, i) => (
         <Link key={i} href={`/tags/${tag}`} className="bg-black px-3 py-0.5 hover:text-primary-color">{tag}</Link>
     ))
 
     return (
-        <Suspense fallback={<p>Loading</p>}>
-            <div className='post__full border border-black max-w-screen-xl my-12 bg-white'>
+        <Suspense>
+            <div className='post__full border border-black max-w-screen-xl my-12 bg-white mx-2 xl:mx-0'>
                 <div className='flex flex-col h-full relative'>
                     <Image height="677" width="1100" src={image} alt="image" className='border-b border-black aspect-photo' />
                     <div className='flex flex-col flex-grow justify-between'>
-                        <span className='text-white px-4 my-3.5 flex justify-between'>
-                            <span className="flex gap-2">
+                        <span className='text-white px-4 my-3.5 flex justify-between flex-col-reverse sm:flex-row'>
+                            <span className="flex gap-2 flex-wrap">
                                 {tagsList}
                             </span>
-                            <div className='bg-black text-white px-3 py-0.5'>
+                            <span className='bg-black text-white px-3 py-0.5 w-fit mb-2 sm:mb-0'>
                                 {date}
-                            </div>
+                            </span>
                         </span>
                         <span className="border-t border-black">
                             <h2 className='mx-4 text-3xl font-bold py-4 text-center border-x border-b border-black'>
@@ -54,7 +49,7 @@ export default async function Post({ params: { postId } }) {
                             </h2>
                         </span>
                         <div className='text-ellipsis break-words overflow-hidden px-4 my-8'>
-                            <article className="first-letter:text-5xl ffirst-letter:ont-bold first-letter:text-orange-400 first-letter:float-left">
+                            <article className="first-letter:text-5xl ffirst-letter:ont-bold first-letter:text-primary-color first-letter:float-left">
                                 {content}
                             </article>
                         </div>

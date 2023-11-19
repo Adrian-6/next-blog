@@ -4,6 +4,7 @@ import { Suspense } from "react"
 import PostsList from './PostsList'
 import PagesList from './PagesList'
 import { notFound } from 'next/navigation'
+import Loading from '../components/Loading'
 
 export default async function FrontPage({ currentPage, postsPerPage, noPagination }) {
 
@@ -26,8 +27,8 @@ export default async function FrontPage({ currentPage, postsPerPage, noPaginatio
     const pagination = noPagination ? null : <PagesList page={currentPage} pages={pagesNum} />
 
     return (
-        <div className='flex flex-col w-full'>
-            <Suspense fallback={<h2>Loading...</h2>}>
+        <div className='flex flex-col w-full mb-8'>
+            <Suspense>
                 <PostsList promise={postsPromise} />
                 {pagination}
             </Suspense>

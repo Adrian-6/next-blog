@@ -1,16 +1,21 @@
 import React, { Suspense } from 'react'
-import Link from 'next/link'
-import { tagsArr } from '../../../lib/tagsArr'
 import PopularTags from '../components/PopularTags'
 
+export const metadata = {
+  title: 'Blog Tags List',
+  description: 'Blog Tags List',
+}
+
 export default async function page() {
-
-  const tagsList = tagsArr.sort().map((tag, id) => (<Link href={`/tags/${tag}`} key={id} className='px-4 py-2 bg-black text-white hover:text-primary-color tag__item'>{tag}</Link>))
-
   return (
     <>
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <div className='flex flex-wrap gap-6'>
+      <Suspense>
+        <div className='bg-zinc-100 full__background py-8 mb-6'>
+          <p className='whitespace-nowrap text-center text-xl'>
+            Tags
+          </p>
+        </div>
+        <div className='flex flex-wrap gap-6 px-2 xl:px-0'>
           <PopularTags />
         </div>
       </Suspense>
