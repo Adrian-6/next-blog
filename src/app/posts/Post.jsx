@@ -38,7 +38,13 @@ export default function Post({ date, title, tags, postId, intro, image }) {
                             {date}
                         </div>
                         <Link href={`/post/${postId}`}>
-                            <Image height="197" width="318" src={image} alt="background image" className='border-b border-black' />
+                            <Image height="197"
+                                width="318"
+                                src={image}
+                                priority
+                                alt="background image"
+                                className='border-b border-black'
+                            />
                         </Link>
                         <div className='flex flex-col flex-grow justify-between max-h-52 overflow-hidden'>
                             <span className='text-white flex flex-wrap gap-2 px-3 mt-4'>

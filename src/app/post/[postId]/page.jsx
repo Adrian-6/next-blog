@@ -45,7 +45,14 @@ export default async function Post({ params: { postId } }) {
         <Suspense>
             <div className='post__full border border-black max-w-screen-xl my-12 bg-white mx-2 xl:mx-0'>
                 <div className='flex flex-col h-full relative'>
-                    <Image height="677" width="1100" src={image} alt="image" className='border-b border-black aspect-photo' />
+                    <Image
+                        height="677"
+                        width="1100"
+                        src={image}
+                        priority
+                        alt="image"
+                        className='border-b border-black aspect-photo'
+                    />
                     <div className='flex flex-col flex-grow justify-between'>
                         <span className='text-white px-4 my-3.5 flex justify-between flex-col-reverse sm:flex-row'>
                             <span className="flex gap-2 flex-wrap">
