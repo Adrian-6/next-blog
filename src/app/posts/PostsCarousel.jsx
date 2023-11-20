@@ -1,7 +1,7 @@
 'use client'
-import styles from './styles.module.css'
-import { Suspense, useEffect, useRef, useState, useCallback } from "react"
+import { Suspense, useCallback, useEffect, useRef, useState } from "react"
 import Post from "./Post"
+import styles from './styles.module.css'
 
 export default function PostsCarousel({ posts }) {
 
@@ -14,11 +14,12 @@ export default function PostsCarousel({ posts }) {
     const intObserver = useRef()
 
     const lastPostRef = useCallback(post => {
-        if (!document.getElementById('6')) return
         if (intObserver.current) intObserver.current.disconnect()
         intObserver.current = new IntersectionObserver(item => {
             if (item[0].isIntersecting) {
                 setCarouselEnd(true)
+            } else {
+                setCarouselEnd(false)
             }
         }, {
             threshold: 1.0
@@ -39,14 +40,16 @@ export default function PostsCarousel({ posts }) {
         carouselRef.current.onscrollend = () => {
             setHover(false)
         }
+    }, [])
 
+    useEffect(() => {
         const interval = setInterval(() => {
             if (!hover) {
                 let left = carouselEnd ? -9999 : 336
                 carouselRef.current.scrollBy({ top: 0, left, behavior: 'smooth' })
                 setCarouselEnd(false)
             }
-        }, 3500)
+        }, 1111)
         return () => clearInterval(interval);
     }, [hover, carouselEnd])
 

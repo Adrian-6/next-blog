@@ -1,25 +1,28 @@
-import Link from 'next/link'
-import FrontPage from '../app/posts/FrontPage'
-import { Suspense } from "react"
-import PopularTags from './components/PopularTags'
-import PostsCarousel from './posts/PostsCarousel'
 import dynamic from 'next/dynamic'
-import { getPostsMeta, getPostByName } from '../../lib/posts'
+import Link from 'next/link'
+import { Suspense } from "react"
+import { getPostByName, getPostsMeta } from '../../lib/posts'
+import PopularTags from './components/PopularTags'
 
 const DynamicCarousel = dynamic(
   () => import('./posts/PostsCarousel'),
   { ssr: false }
 )
 
-const res = await getPostsMeta()
-if (res.length === 0) notFound()
+const getLatestPosts = async () => {
+  const res = await getPostsMeta()
+  if (res.length === 0) notFound()
 
-const postsArr = []
-const posts = res.slice(0, 7)
-for (const post of posts) {
-  const res = await getPostByName(`${post.meta.id}.mdx`)
-  postsArr.push(res)
+  const postsArr = []
+  const posts = res.slice(0, 7) // gives 7 most recent posts
+  for (const post of posts) {
+    const res = await getPostByName(`${post.meta.id}.mdx`)
+    postsArr.push(res)
+  }
+  return postsArr
 }
+
+const latestPosts = await getLatestPosts()
 
 export default function Home() {
   return (
@@ -39,7 +42,7 @@ export default function Home() {
           </h2>
         </div>
         <Suspense>
-          <DynamicCarousel posts={postsArr} />
+          <DynamicCarousel posts={latestPosts} />
         </Suspense>
         <div className='flex mt-6'>
           <Link href="/posts" className='text-xl border border-black px-4 py-2 mx-auto header__item'>

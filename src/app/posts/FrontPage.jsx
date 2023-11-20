@@ -1,10 +1,8 @@
-import React from 'react'
-import { getPostsMeta, getPostByName } from '../../../lib/posts'
-import { Suspense } from "react"
-import PostsList from './PostsList'
-import PagesList from './PagesList'
 import { notFound } from 'next/navigation'
-import Loading from '../components/Loading'
+import { Suspense } from "react"
+import { getPostByName, getPostsMeta } from '../../../lib/posts'
+import PagesList from './PagesList'
+import PostsList from './PostsList'
 
 export default async function FrontPage({ currentPage, postsPerPage, noPagination }) {
 
@@ -23,7 +21,6 @@ export default async function FrontPage({ currentPage, postsPerPage, noPaginatio
         }
         return postsArr
     }
-
     const pagination = noPagination ? null : <PagesList page={currentPage} pages={pagesNum} />
 
     return (

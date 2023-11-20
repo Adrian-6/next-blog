@@ -122,7 +122,6 @@ body {
   position: relative;
   width: 100%;
   border-top: 1px solid rgb(161 161 170);
-
 }
 
 .border-top-full::before {
@@ -133,7 +132,6 @@ body {
   height: 100%;
   width: 5000px;
   border-top: 1px solid rgb(161 161 170);
-
 }
 
 .border-top-full::after {
@@ -144,7 +142,6 @@ body {
   height: 100%;
   width: 5000px;
   border-top: 1px solid rgb(161 161 170);
-
 }
 
 .slide-in {

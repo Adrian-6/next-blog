@@ -1,9 +1,8 @@
 'use client'
-import React from 'react'
 import Link from 'next/link'
-import styles from './styles.module.css'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import styles from './styles.module.css'
 
 export default function Header() {
 

@@ -1,7 +1,5 @@
-import React from 'react'
-import { getPostsMeta, getPostByName } from '../../../../lib/posts'
-import { notFound } from 'next/navigation'
-import { Suspense } from "react"
+import React, { Suspense } from 'react'
+import { getPostByName, getPostsMeta } from '../../../../lib/posts'
 import PostsList from '../../posts/PostsList'
 
 export async function generateMetadata(
@@ -46,7 +44,6 @@ export async function generateStaticParams() {
   const postTagsArr = []
   for (const post of posts) {
     const res = await getPostByName(`${post.meta.id}.mdx`)
-    //let stringContent = postContent.content.toString();
     postTagsArr.push(res.meta.tags.filter(tag => postTagsArr.indexOf(tag) === -1))
   }
 

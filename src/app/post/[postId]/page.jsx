@@ -2,8 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { getPostByName } from "../../../../lib/posts";
-import { getPostsMeta } from "../../../../lib/posts";
+import { getPostByName, getPostsMeta } from "../../../../lib/posts";
 
 export async function generateMetadata({ params: { postId } }) {
     const post = await getPostByName(`${postId}.mdx`)

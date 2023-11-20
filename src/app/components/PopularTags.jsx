@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 export default async function PopularTags({ tagsNum }) {
     const posts = await getPostsMeta()
-
     const postTagsArr = []
     for (const post of posts) {
         const res = await getPostByName(`${post.meta.id}.mdx`)
@@ -45,8 +44,7 @@ export default async function PopularTags({ tagsNum }) {
                 </Link>
             </li>
         )
-    }
-    )
+    })
 
     return (
         <ul className='flex gap-4 flex-wrap py-6 px-2 sm:flex-row sm:px-0'>{content}</ul>
