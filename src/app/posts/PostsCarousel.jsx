@@ -49,7 +49,7 @@ export default function PostsCarousel({ posts }) {
                 carouselRef.current.scrollBy({ top: 0, left, behavior: 'smooth' })
                 setCarouselEnd(false)
             }
-        }, 1111)
+        }, 3500)
         return () => clearInterval(interval);
     }, [hover, carouselEnd])
 

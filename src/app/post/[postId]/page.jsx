@@ -61,7 +61,7 @@ export default async function Post({ params: { postId } }) {
                             </h2>
                         </span>
                         <div className='text-ellipsis break-words overflow-hidden px-4 my-8'>
-                            <article className="first-letter:text-5xl ffirst-letter:ont-bold first-letter:text-primary-color first-letter:float-left">
+                            <article className="first-letter:text-5xl first-letter:text-primary-color first-letter:float-left">
                                 {content}
                             </article>
                         </div>
