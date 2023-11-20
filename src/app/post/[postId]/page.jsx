@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { getPostByName } from "../../../../lib/posts";
+import { getPostsMeta } from "../../../../lib/posts";
 
 export async function generateMetadata({ params: { postId } }) {
     const post = await getPostByName(`${postId}.mdx`)
@@ -17,9 +18,21 @@ export async function generateMetadata({ params: { postId } }) {
     }
 }
 
+export async function generateStaticParams() {
+    const postIds = []
+    const posts = await getPostsMeta()
+    for (const post of posts) {
+        const res = await getPostByName(`${post.meta.id}.mdx`)
+        postIds.push(res.meta.id)
+    }
+
+    return postIds.map((id) => (
+        { postId: id }
+    ))
+}
+
 export default async function Post({ params: { postId } }) {
     const post = await getPostByName(`${postId}.mdx`)
-
     if (!post) notFound()
 
     const { meta, content } = post

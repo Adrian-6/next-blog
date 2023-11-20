@@ -27,7 +27,6 @@ export default async function page({ params: { tag } }) {
     return postsArr
   }
 
-
   return (
     <>
       <Suspense>
